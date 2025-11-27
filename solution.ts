@@ -8,9 +8,47 @@ const formatValue = (param1: string | number | boolean) : string | number | bool
   } else{
     param1 = "Invalid input"
   }
-  return param1
+  return param1;
 }
 
 // console.log(formatValue('hello'));
 // console.log(formatValue(5));
 // console.log(formatValue(true));
+
+const getLength = (param2: string | [ string, number, boolean] ) => {
+  if (typeof param2 === 'string'){
+    return param2.length;
+  } else if ( Array.isArray(param2) ){
+    return param2.length
+  } else{
+    return "invalid input"
+  }
+}
+
+// console.log(getLength('typescript'));
+// console.log(getLength([10, 20, 30, 40]));
+
+
+// type PersonType {
+//   name: string, age: number
+// }
+
+class Person{
+  name: string;
+  age: number;
+
+  constructor( name: string, age: number){
+    this.name = name;
+    this.age = age
+  }
+
+  getDetails(){
+    return this.name
+  }
+}
+
+const person1 = new Person('John Doe', 30);
+console.log(person1.getDetails());
+
+const person2 = new Person('Alice', 25);
+console.log(person2.getDetails());
