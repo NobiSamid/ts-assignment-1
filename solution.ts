@@ -57,11 +57,11 @@ class Person{
 
 interface Books {
   title: string;
-  rating: number;
+  rating: string;
 }
 
-const filterByRating = (books: Books[]) : Books[] =>{
-  return books.filter(book => book.rating >= 4.0);
+const filterByRating = (books: { title: string; rating: number }[]) : Books[] =>{
+  return books.filter(book => book.rating >= 4.0).map(book => ({...book, rating: book.rating.toFixed(1)}))
 }
 
 
@@ -72,3 +72,11 @@ const books = [
 ];
 
 console.log(filterByRating(books));
+// console.log(
+//   filterByRating(books).map(book => ({
+//     ...book,
+//     rating: book.rating.toFixed(1) // now rating is a string like "5.0"
+//   }))
+// );
+
+
