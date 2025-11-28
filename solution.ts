@@ -36,19 +36,39 @@ const getLength = (param2: string | [ string, number, boolean] ) => {
 class Person{
   name: string;
   age: number;
+  details: string
 
   constructor( name: string, age: number){
     this.name = name;
     this.age = age
+    this.details = `'Name: ${this.name}, Age: ${this.age}'`
   }
 
   getDetails(){
-    return this.name
+    return this.details
   }
 }
 
-const person1 = new Person('John Doe', 30);
-console.log(person1.getDetails());
+// const person1 = new Person('John Doe', 30);
+// console.log(person1.getDetails());
 
-const person2 = new Person('Alice', 25);
-console.log(person2.getDetails());
+// const person2 = new Person('Alice', 25);
+// console.log(person2.getDetails());
+
+interface Books {
+  title: string;
+  rating: number;
+}
+
+const filterByRating = (books: Books[]) : Books[] =>{
+  return books.filter(book => book.rating >= 4.0);
+}
+
+
+const books = [
+  { title: 'Book A', rating: 4.5 },
+  { title: 'Book B', rating: 3.2 },
+  { title: 'Book C', rating: 5.0 },
+];
+
+console.log(filterByRating(books));
