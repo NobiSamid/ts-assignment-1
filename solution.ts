@@ -55,12 +55,12 @@ class Person{
 // const person2 = new Person('Alice', 25);
 // console.log(person2.getDetails());
 
-interface Products {
+interface Goods {
   title: string;
   rating: number;
 }
 
-const filterByRating = (products: Products[]) : Products[] =>{
+const filterByRating = (products: Goods[]) : Goods[] =>{
   return books.filter(product => product.rating >= 4.0).map(product => ({...product, rating: Number(product.rating.toFixed(1))}))
 }
 
@@ -144,6 +144,32 @@ const getUniqueValues = (arr1: any[], arr2: any[] ) =>{
 // const array2 = [3, 4, 5, 6, 7, false];
 const array1 = [1, 2, 3, 4, 5];
 const array2 = [3, 4, 5, 6, 7];
-console.log(getUniqueValues(array1, array2));
+// console.log(getUniqueValues(array1, array2));
 
 
+interface Products{
+  name: string;
+  price: number;
+  quantity: number;
+  discount?: number;
+}
+
+const calculateTotalPrice = (products: Products[]) : number =>{
+  let totalPrice = 0
+  products.map(product => {
+    if(product.discount !== undefined){
+       totalPrice = totalPrice + ((product.price - (product.price * (product.discount/100))) * product.quantity)
+    }else if (product.discount === undefined){
+       totalPrice = totalPrice + (product.price * product.quantity)
+    }
+  })
+  return totalPrice
+}
+
+const products = [
+  { name: 'Pen', price: 10, quantity: 2 },
+  { name: 'Notebook', price: 25, quantity: 3, discount: 10 },
+  { name: 'Bag', price: 50, quantity: 1, discount: 20 },
+];
+
+console.log(calculateTotalPrice(products));
